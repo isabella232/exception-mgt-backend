@@ -28,7 +28,7 @@ public class Ticket {
 	private String phoneNumber;
 	private Date transactionDate;
 	private Double amount;	
-	private String channel;
+//	private String channel;
 	@DateTimeFormat(pattern="yyy-MM-dd'T'HH:mm:ss")
 	@Column(nullable=false, updatable=false)
 	@CreatedDate
@@ -39,7 +39,7 @@ public class Ticket {
 	
 	public Ticket() {};
 	public Ticket(Long id, Long terminalId, String accountNo, String pan, String phoneNumber, Date transactionDate,
-			Double amount, String channel, Date createdAt, Date updatedAt) {
+			Double amount, Date createdAt, Date updatedAt) {
 		super();
 		this.id = id;
 		this.terminalId = terminalId;
@@ -48,7 +48,7 @@ public class Ticket {
 		this.phoneNumber = phoneNumber;
 		this.transactionDate = transactionDate;
 		this.amount = amount;
-		this.channel = channel;
+//		this.channel = channel;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}

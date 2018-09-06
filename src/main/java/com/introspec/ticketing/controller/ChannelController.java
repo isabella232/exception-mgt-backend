@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.introspec.ticketing.entity.Channel;
@@ -17,7 +18,7 @@ import com.introspec.ticketing.entity.Ticket;
 import com.introspec.ticketing.service.ChannelService;
 
 @RestController
-@RequestMapping("/tickets/{ticketId}")
+@RequestMapping("/tickets/{ticketid}/channels")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ChannelController {
 	
@@ -28,18 +29,18 @@ public class ChannelController {
 	}
 	
 	@GetMapping("")
-	public List<Channel> getAllChannel(){
-		return channelService.getAllChannel();
+	public List<Channel> getAllChannel(@PathVariable Long ticketid){
+		return channelService.getAllChannel(ticketid);
 	}
 	
 	@GetMapping("/{id}")
-	public Channel getChannel(@PathVariable Long id){	
+	public Channel getChannel(@PathVariable Long ticketid,Long id ){	
 		return channelService.getChannel(id).get();
 	}
 	
 	@PostMapping("")
 	public Channel addChannel(@RequestBody Channel channel, @PathVariable Long ticketid){
-		channel.setTicket(new Ticket(ticketid));
+		channel.setTicket(new Ticket(ticketid, 1l, "", "", "",  new Date(), 0.00, new Date(), new Date()));
 		return channelService.addChannel(channel);
 	}
 

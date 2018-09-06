@@ -1,5 +1,6 @@
 package com.introspec.ticketing.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +24,11 @@ public class ChannelService {
 	}
 
 	
-	 public List<Channel> getAllChannel() {
-			return channelRepo.findAll();
+	 public List<Channel> getAllChannel(Long ticketid) {
+		 List<Channel> channel = new ArrayList<>();
+		channelRepo.findByTicketId(ticketid)
+		.forEach(channel::add);
+		return channel;
 			
 			}
 	 

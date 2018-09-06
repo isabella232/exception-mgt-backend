@@ -10,8 +10,8 @@ import com.introspec.ticketing.entity.Channel;
 
 @Repository
 public interface ChannelRepo extends  JpaRepository<Channel, Long> {
-	public List<Channel> findByTicketId(String ticketid);
-	public List<Channel> findByType(String type);
+	public List<Channel> findByTicketId(Long ticketid);
+//	public List<Channel> findByType(String type);
 
 	}
 

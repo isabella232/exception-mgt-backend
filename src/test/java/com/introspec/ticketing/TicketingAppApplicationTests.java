@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.introspec.ticketing.entity.Channel;
 import com.introspec.ticketing.entity.Ticket;
+import com.introspec.ticketing.repo.ChannelRepo;
 import com.introspec.ticketing.repo.TicketRepo;
 
 @RunWith(SpringRunner.class)
@@ -16,6 +18,7 @@ import com.introspec.ticketing.repo.TicketRepo;
 public class TicketingAppApplicationTests {
 	@Autowired
 	private TicketRepo ticketRepo;
+	private ChannelRepo channelRepo;
 //	private final TicketRepo ticketRepo;
 //	
 //	@Autowired
@@ -31,13 +34,22 @@ public class TicketingAppApplicationTests {
 		ticket.setPan("1157xxxx34");
 		ticket.setPhoneNumber("08135997541");
 		ticket.setAmount(120.90);
-//		ticket.setTransactionDate(new Date());
-		ticket.setChannel("NTA");
+		ticket.setTransactionDate(new Date());
+//		ticket.setChannel("NTA");
 		ticket.setTerminalId(12346l);
 //		ticket.setCreatedAt(new Date());
 //		ticket.setUpdatedAt(new Date());
 		
 		ticketRepo.save(ticket);
+	}
+	@Test
+	public void CreateChannel() {
+		Channel channel = new Channel();
+		channel.setName("ATM");
+		channel.setType("Dispense error");
+		
+		channelRepo.save(channel);
+		
 	}
 
 }

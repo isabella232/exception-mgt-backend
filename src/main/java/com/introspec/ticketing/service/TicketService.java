@@ -47,7 +47,7 @@ public class TicketService {
 			ticket -> {
 				ticket.setAccountNo(updatedTicket.getAccountNo());
 				ticket.setAmount(updatedTicket.getAmount());
-				ticket.setChannel(updatedTicket.getChannel());
+//				ticket.setChannel(updatedTicket.getChannel());
 				ticket.setPan(updatedTicket.getPan());
 				ticket.setPhoneNumber(updatedTicket.getPhoneNumber());
 				ticket.setTerminalId(updatedTicket.getTerminalId());
