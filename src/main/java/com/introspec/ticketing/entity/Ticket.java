@@ -37,6 +37,30 @@ public class Ticket {
 	@LastModifiedDate
 	private Date updatedAt;
 	
+	public Ticket() {};
+	public Ticket(Long id, Long terminalId, String accountNo, String pan, String phoneNumber, Date transactionDate,
+			Double amount, String channel, Date createdAt, Date updatedAt) {
+		super();
+		this.id = id;
+		this.terminalId = terminalId;
+		this.accountNo = accountNo;
+		this.pan = pan;
+		this.phoneNumber = phoneNumber;
+		this.transactionDate = transactionDate;
+		this.amount = amount;
+		this.channel = channel;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+	public Ticket(Long id) {
+		this.id = id;
+	}
+
+//	public Ticket(Long ticketid, long l, String string, String string2, String string3, Date date, String string4,
+//			Date date2, Date date3) {
+//		// TODO Auto-generated constructor stub
+//	}
+//	
 	
 	
 	
