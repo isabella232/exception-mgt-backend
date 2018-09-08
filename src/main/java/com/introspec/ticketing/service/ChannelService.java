@@ -7,11 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.introspec.ticketing.entity.Channel;
+import com.introspec.ticketing.entity.Ticket;
 import com.introspec.ticketing.exception.ResourceNotFound;
 import com.introspec.ticketing.repo.ChannelRepo;
+import com.introspec.ticketing.repo.TicketRepo;
 
 @Service
 public class ChannelService {
@@ -23,23 +26,48 @@ public class ChannelService {
 		this.channelRepo = channelRepo;
 	}
 
+
 	
-	 public List<Channel> getAllChannel(Long ticketid) {
-		 List<Channel> channel = new ArrayList<>();
-		channelRepo.findByTicketId(ticketid)
-		.forEach(channel::add);
-		return channel;
-			
+	//to get all tickets generated from  a particular channel
+	 public List<Channel> getAllChannels() {
+		 return channelRepo.findAll();
 			}
 	 
-	 public Optional<Channel> getChannel(Long id){
+	 public Optional<Channel> getChannelById(Long id){
 			return channelRepo.findById(id);
 		}
 	 
-	 public Channel addChannel(Channel channel) {
+	 public Optional<Channel> getChannelByName(String name){
+			return channelRepo.findByName(name);
+		}
+	 
+	 public Channel addChannel(Channel channel) {	
 			return channelRepo.save(channel);	
 		}
-}
+	 
+	 
+	 public Channel updateChannel(Long id, Channel updatedChannel){
+			return channelRepo.findById(id).map(
+				channel -> {
+					channel.setName(updatedChannel.getName());
+					return channelRepo.save(channel);
+				}
+			).orElseThrow(()-> new ResourceNotFound(String.format("Channel id {0} not found", id)));
+		}
+	 
+	 
+	 public Channel deleteChannel(Long id){
+			return channelRepo.findById(id).map(
+				channel -> {
+					channelRepo.delete(channel);
+					return channel;
+				}
+			).orElseThrow(()-> new ResourceNotFound(String.format("Channel id {0} not found", id)));
+		}
+
+		 
+} 
+
 
 
 	

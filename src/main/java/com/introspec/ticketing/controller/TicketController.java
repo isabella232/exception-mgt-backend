@@ -3,6 +3,7 @@ package com.introspec.ticketing.controller;
 import java.util.List;
 
 import com.introspec.ticketing.entity.Ticket;
+import com.introspec.ticketing.service.ChannelService;
 import com.introspec.ticketing.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,11 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tickets")
 @CrossOrigin(origins = "http://localhost:3000")
 public class TicketController {
-	
+	private final ChannelService channelService;
 	private final TicketService ticketService;
 	@Autowired
-	public TicketController(final TicketService ticketService) {
+	public TicketController(final TicketService ticketService, ChannelService channelService) {
 		this.ticketService = ticketService;
+		this.channelService = channelService;
 	}
 	
 	@GetMapping("")
@@ -48,14 +50,18 @@ public class TicketController {
 	@PostMapping("")
 	@CrossOrigin(origins = "localhost:3000")
 	public Ticket addTicket(@RequestBody Ticket ticket ){
+//		channelService.addTicket(ticket.getChannelid(), ticket);
 		return ticketService.addTicket(ticket);
 	}
 	
 	//we won't be using the next two, but keeping this as references for such when needed.
 	@PutMapping("/{id}")
 	public Ticket updateTicket(@PathVariable Long id, @RequestBody Ticket updatedTicket){
+//		channelService.updateTicketInChannel(updatedTicket.getChannelid(), updatedTicket);
 		return ticketService.updateTicket(id, updatedTicket);
 	}
+	
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public void deleteTicket(@PathVariable Long id){
 		ticketService.deleteTicket(id);
