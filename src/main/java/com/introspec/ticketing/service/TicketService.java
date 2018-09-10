@@ -38,6 +38,7 @@ public class TicketService {
 	}
 
 	public Ticket addTicket(Ticket ticket) {
+		
 		return ticketRepo.save(ticket);	
 	}
 
@@ -55,7 +56,7 @@ public class TicketService {
 
 				return ticketRepo.save(ticket);
 			}
-		).orElseThrow(()-> new ResourceNotFound(String.format("Post id {0} not found", id)));
+		).orElseThrow(()-> new ResourceNotFound(String.format("Ticket id {0} not found", id)));
 	}
 
 	//construct forces me to return something, not great. research possible fix
@@ -65,6 +66,6 @@ public class TicketService {
 				ticketRepo.delete(ticket);
 				return ticket;
 			}
-		).orElseThrow(()-> new ResourceNotFound(String.format("Post id {0} not found", id)));
+		).orElseThrow(()-> new ResourceNotFound(String.format("Ticket id {0} not found", id)));
 	}
 }

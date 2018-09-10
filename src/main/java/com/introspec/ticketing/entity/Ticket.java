@@ -2,9 +2,13 @@ package com.introspec.ticketing.entity;
 
 import java.util.Date;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,6 +23,7 @@ import lombok.Data;
 	allowGetters = true
 )
 public class Ticket {
+	@NotNull
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -37,8 +42,29 @@ public class Ticket {
 	@LastModifiedDate
 	private Date updatedAt;
 	
+//	@ManyToOne
+//	@JoinColumn(name="channelid", referencedColumnName="id")
+//	protected Channel channel;
 	
-	
+//	public Ticket() {};
+//	public Ticket(Long id, Long terminalId, String accountNo, String pan, String phoneNumber, Date transactionDate,
+//			Double amount, Date createdAt, Date updatedAt, Long channelid) {
+//		super();
+//		this.id = id;
+//		this.terminalId = terminalId;
+//		this.accountNo = accountNo;
+//		this.pan = pan;
+//		this.phoneNumber = phoneNumber;
+//		this.transactionDate = transactionDate;
+//		this.amount = amount;
+//		this.channel = channel;
+//		this.createdAt = createdAt;
+//		this.updatedAt = updatedAt;
+//		
+//	}
+//	public Ticket(Long id) {
+//		this.id = id;
+//	}
 	
 //	@Override
 //	public String toString() {
